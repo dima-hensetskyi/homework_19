@@ -110,7 +110,7 @@ const SignIn = () => {
             </Button>
             <footer>
                 <Link href="#">Forgot password?</Link>
-                <Link href="/sign-up">Don't have an account? Sign Up</Link>
+                <Link href="#sign-up">Don't have an account? Sign Up</Link>
                 <p>Copyright &copy; Your Website 2021.</p>
             </footer>
             <Snackbar
