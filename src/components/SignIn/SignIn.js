@@ -46,7 +46,7 @@ const SignIn = () => {
 
   const authorization = () => {
     if (data) {
-      if (data.userEmail === login || data.userPassword === password) {
+      if (data.userEmail === login && data.userPassword === password) {
         setOpenSuccessSnackbar(true);
         setLogin('');
         setPassword('');

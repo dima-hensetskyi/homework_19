@@ -79,6 +79,7 @@ const SignUp = () => {
     }
 
     setOpenSnackbar(false);
+    setOpenErrorSnackbar(false);
   };
 
   return (
