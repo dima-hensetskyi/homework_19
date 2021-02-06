@@ -1,12 +1,21 @@
-import Link from '@material-ui/core/Link';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import React, { useEffect, useState } from 'react';
-import { TextField, Checkbox, Button, Snackbar } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
+import Link from '@material-ui/core/Link';
+import { Snackbar } from '@material-ui/core';
 
 import logo from '../img/padlock.png';
-
-import './SignIn.sass';
+import {
+  TextField,
+  SignInContainer,
+  HeaderSignIn,
+  HeaderImgContainer,
+  HeaderImg,
+  HeaderText,
+  SignInBtn,
+  CheckboxContainer,
+  Checkbox,
+  SignInFooter,
+} from '../StyleComponents/StyledComponents';
 
 const SignIn = () => {
   const [data, setData] = useState(null);
@@ -56,57 +65,49 @@ const SignIn = () => {
           : null;
       }
     }
-    console.log('yes');
     setOpenErrorSnackbar(true);
   };
 
   return (
-    <div className="sign-in">
-      <header>
-        <div className="header-img">
-          <img className="logo" src={logo} alt="logo"></img>
-        </div>
-        <p>Sign In</p>
-      </header>
+    <SignInContainer>
+      <HeaderSignIn>
+        <HeaderImgContainer>
+          <HeaderImg src={logo} alt="logo"></HeaderImg>
+        </HeaderImgContainer>
+        <HeaderText>Sign In</HeaderText>
+      </HeaderSignIn>
       <TextField
-        id="outlined-basic"
-        label="Email Adress*"
-        variant="outlined"
+        placeholder="Email Adress*"
         autoComplete="email"
         value={login}
         onChange={(event) => setLogin(event.target.value)}
       />
       <TextField
-        id="outlined-basic"
-        label="Password*"
-        variant="outlined"
         type="password"
+        placeholder="Password*"
         autoComplete="current-password"
         value={password}
         onChange={(event) => setPassword(event.target.value)}
       />
-      <FormControlLabel
-        control={
-          <Checkbox checked={rememberUser} value="password" color="primary" />
-        }
-        label="Remember me"
+      <CheckboxContainer
         onChange={() =>
           rememberUser ? setRememberUser(false) : setRememberUser(true)
         }
-      ></FormControlLabel>
-      <Button
-        className="authorization-buttons"
-        variant="contained"
-        color="primary"
-        onClick={authorization}
       >
-        SIGN IN
-      </Button>
-      <footer>
+        <Checkbox
+          type="checkbox"
+          checked={rememberUser}
+          value="password"
+          id="Password"
+        />
+        <label htmlFor="Password">Remember me</label>
+      </CheckboxContainer>
+      <SignInBtn onClick={authorization}>SIGN IN</SignInBtn>
+      <SignInFooter>
         <Link href="#">Forgot password?</Link>
         <Link href="#sign-up">Don't have an account? Sign Up</Link>
         <p>Copyright &copy; Your Website 2021.</p>
-      </footer>
+      </SignInFooter>
       <Snackbar
         open={openErrorSnackbar}
         autoHideDuration={6000}
@@ -126,7 +127,8 @@ const SignIn = () => {
           Authorization successful!
         </Alert>
       </Snackbar>
-    </div>
+    </SignInContainer>
   );
 };
+
 export default SignIn;
